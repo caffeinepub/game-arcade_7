@@ -24,9 +24,11 @@ export const UserProfile = IDL.Record({ 'name' : IDL.Text });
 export const idlService = IDL.Service({
   '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
   'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+  'checkUsernameExists' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
   'getAllHighScores' : IDL.Func([], [IDL.Vec(ScoreEntry)], ['query']),
   'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
   'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+  'getCallerUsername' : IDL.Func([], [IDL.Opt(IDL.Text)], ['query']),
   'getGlobalLeaderboard' : IDL.Func(
       [IDL.Text],
       [IDL.Vec(ScoreEntry)],
@@ -40,6 +42,8 @@ export const idlService = IDL.Service({
       ['query'],
     ),
   'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+  'loginUser' : IDL.Func([IDL.Text, IDL.Text], [], []),
+  'registerUser' : IDL.Func([IDL.Text, IDL.Text], [], []),
   'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
   'saveHighScore' : IDL.Func([IDL.Text, IDL.Nat], [], []),
 });
@@ -63,9 +67,11 @@ export const idlFactory = ({ IDL }) => {
   return IDL.Service({
     '_initializeAccessControlWithSecret' : IDL.Func([IDL.Text], [], []),
     'assignCallerUserRole' : IDL.Func([IDL.Principal, UserRole], [], []),
+    'checkUsernameExists' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
     'getAllHighScores' : IDL.Func([], [IDL.Vec(ScoreEntry)], ['query']),
     'getCallerUserProfile' : IDL.Func([], [IDL.Opt(UserProfile)], ['query']),
     'getCallerUserRole' : IDL.Func([], [UserRole], ['query']),
+    'getCallerUsername' : IDL.Func([], [IDL.Opt(IDL.Text)], ['query']),
     'getGlobalLeaderboard' : IDL.Func(
         [IDL.Text],
         [IDL.Vec(ScoreEntry)],
@@ -79,6 +85,8 @@ export const idlFactory = ({ IDL }) => {
         ['query'],
       ),
     'isCallerAdmin' : IDL.Func([], [IDL.Bool], ['query']),
+    'loginUser' : IDL.Func([IDL.Text, IDL.Text], [], []),
+    'registerUser' : IDL.Func([IDL.Text, IDL.Text], [], []),
     'saveCallerUserProfile' : IDL.Func([UserProfile], [], []),
     'saveHighScore' : IDL.Func([IDL.Text, IDL.Nat], [], []),
   });

@@ -23,14 +23,18 @@ export enum UserRole {
 }
 export interface backendInterface {
     assignCallerUserRole(user: Principal, role: UserRole): Promise<void>;
+    checkUsernameExists(username: string): Promise<boolean>;
     getAllHighScores(): Promise<Array<ScoreEntry>>;
     getCallerUserProfile(): Promise<UserProfile | null>;
     getCallerUserRole(): Promise<UserRole>;
+    getCallerUsername(): Promise<string | null>;
     getGlobalLeaderboard(gameId: string): Promise<Array<ScoreEntry>>;
     getHighScore(gameId: string): Promise<ScoreEntry | null>;
     getPlayerCount(gameId: string): Promise<bigint>;
     getUserProfile(user: Principal): Promise<UserProfile | null>;
     isCallerAdmin(): Promise<boolean>;
+    loginUser(username: string, password: string): Promise<void>;
+    registerUser(username: string, password: string): Promise<void>;
     saveCallerUserProfile(profile: UserProfile): Promise<void>;
     saveHighScore(gameId: string, score: bigint): Promise<void>;
 }

@@ -23,14 +23,18 @@ export type UserRole = { 'admin' : null } |
 export interface _SERVICE {
   '_initializeAccessControlWithSecret' : ActorMethod<[string], undefined>,
   'assignCallerUserRole' : ActorMethod<[Principal, UserRole], undefined>,
+  'checkUsernameExists' : ActorMethod<[string], boolean>,
   'getAllHighScores' : ActorMethod<[], Array<ScoreEntry>>,
   'getCallerUserProfile' : ActorMethod<[], [] | [UserProfile]>,
   'getCallerUserRole' : ActorMethod<[], UserRole>,
+  'getCallerUsername' : ActorMethod<[], [] | [string]>,
   'getGlobalLeaderboard' : ActorMethod<[string], Array<ScoreEntry>>,
   'getHighScore' : ActorMethod<[string], [] | [ScoreEntry]>,
   'getPlayerCount' : ActorMethod<[string], bigint>,
   'getUserProfile' : ActorMethod<[Principal], [] | [UserProfile]>,
   'isCallerAdmin' : ActorMethod<[], boolean>,
+  'loginUser' : ActorMethod<[string, string], undefined>,
+  'registerUser' : ActorMethod<[string, string], undefined>,
   'saveCallerUserProfile' : ActorMethod<[UserProfile], undefined>,
   'saveHighScore' : ActorMethod<[string, bigint], undefined>,
 }

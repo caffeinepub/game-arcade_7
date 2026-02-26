@@ -1,4 +1,4 @@
-import { Gamepad2, Trophy, Zap, Bell } from "lucide-react";
+import { Gamepad2, Trophy, Zap, Bell, User, LogIn } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useAllHighScores } from "@/hooks/useQueries";
 import type { GameDefinition } from "@/types/games";
@@ -8,6 +8,8 @@ interface Props {
   onSelectGame: (game: GameDefinition) => void;
   onOpenLeaderboard: () => void;
   onOpenUpdates: () => void;
+  currentUsername?: string | null;
+  onOpenAuth?: () => void;
 }
 
 const NEON_COLORS: Record<string, { text: string; border: string; glow: string }> = {
@@ -19,7 +21,7 @@ const NEON_COLORS: Record<string, { text: string; border: string; glow: string }
   red:    { text: "#ff4444", border: "rgba(255,68,68,0.35)", glow: "0 0 15px rgba(255,68,68,0.2)" },
 };
 
-export default function Lobby({ onSelectGame, onOpenLeaderboard, onOpenUpdates }: Props) {
+export default function Lobby({ onSelectGame, onOpenLeaderboard, onOpenUpdates, currentUsername, onOpenAuth }: Props) {
   const { data: allScores, isLoading } = useAllHighScores();
 
   const getScore = (gameId: string): number | null => {
@@ -60,6 +62,47 @@ export default function Lobby({ onSelectGame, onOpenLeaderboard, onOpenUpdates }
 
           {/* Action buttons */}
           <div className="flex items-center justify-center gap-3 flex-wrap">
+            {/* User badge or Sign In */}
+            {currentUsername ? (
+              <div
+                className="flex items-center gap-1.5 font-mono-tech text-xs px-3 py-2 rounded"
+                style={{
+                  background: "rgba(57,255,20,0.08)",
+                  border: "1px solid rgba(57,255,20,0.35)",
+                  color: "#39ff14",
+                  boxShadow: "0 0 8px rgba(57,255,20,0.1)",
+                }}
+              >
+                <User className="h-3 w-3" />
+                {currentUsername}
+              </div>
+            ) : onOpenAuth ? (
+              <button
+                type="button"
+                onClick={onOpenAuth}
+                className="flex items-center gap-2 font-arcade text-[10px] px-4 py-2.5 rounded transition-all duration-200"
+                style={{
+                  background: "transparent",
+                  color: "#39ff14",
+                  border: "1px solid rgba(57,255,20,0.4)",
+                  boxShadow: "0 0 10px rgba(57,255,20,0.1)",
+                }}
+                onMouseEnter={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 15px rgba(57,255,20,0.4)";
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = "#39ff14";
+                  (e.currentTarget as HTMLButtonElement).style.background = "rgba(57,255,20,0.08)";
+                }}
+                onMouseLeave={(e) => {
+                  (e.currentTarget as HTMLButtonElement).style.boxShadow = "0 0 10px rgba(57,255,20,0.1)";
+                  (e.currentTarget as HTMLButtonElement).style.borderColor = "rgba(57,255,20,0.4)";
+                  (e.currentTarget as HTMLButtonElement).style.background = "transparent";
+                }}
+              >
+                <LogIn className="h-3.5 w-3.5" />
+                SIGN IN
+              </button>
+            ) : null}
+
             <button
               type="button"
               onClick={onOpenLeaderboard}
