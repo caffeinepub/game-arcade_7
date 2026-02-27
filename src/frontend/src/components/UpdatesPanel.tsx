@@ -16,12 +16,19 @@ interface Update {
 
 const UPDATES: Update[] = [
   {
+    version: "v5.0",
+    date: "Feb 27, 2026",
+    title: "21 New Games Added",
+    description: "Pinball, Doodle Jump, Geometry Dash, Candy Crush, Jewel Quest, FreeCell, Spider Solitaire, TriPeaks, Pyramid Solitaire, Hex 2048, Stack, Color Switch, Sokoban, Pipe Dream, Number Link, Blokus, Triple Triad, Ludo, Wordle, Roll the Ball, 2048 3D",
+    color: "#39ff14",
+    isNew: true,
+  },
+  {
     version: "v4.0",
     date: "Feb 26, 2026",
     title: "30 New Games Added",
     description: "Checkers, Chess, Sudoku, Solitaire, Mahjong, Battleship, Reversi, Go, Dominoes, Backgammon, Yahtzee, Blackjack, Video Poker, Word Search, Hangman, Boggle, Sliding Puzzle, Towers of Hanoi, Nonogram, Lights Out, Mancala, Nine Men's Morris, Hex, Dots & Boxes, Mastermind, Nim, Cribbage, Concentration, Connect Five, SameGame",
     color: "#00f5ff",
-    isNew: true,
   },
   {
     version: "v3.0",
@@ -170,7 +177,7 @@ export default function UpdatesPanel({ open, onClose }: Props) {
           style={{ borderColor: "rgba(255,255,255,0.06)" }}
         >
           <p className="font-mono-tech text-xs text-center" style={{ color: "rgba(255,255,255,0.2)" }}>
-            Game Arcade • 49 games and counting
+            Game Arcade • 70 games and counting
           </p>
         </div>
       </div>

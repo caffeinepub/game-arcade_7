@@ -56,7 +56,7 @@ export default function Lobby({ onSelectGame, onOpenLeaderboard, onOpenUpdates, 
           </div>
           <p className="font-mono-tech text-sm text-muted-foreground mb-5">
             <Zap className="inline h-4 w-4 mr-1" style={{ color: "#fff200" }} />
-            SELECT YOUR GAME — 49 TITLES
+            SELECT YOUR GAME — 70 TITLES
             <Zap className="inline h-4 w-4 ml-1" style={{ color: "#fff200" }} />
           </p>
 
